@@ -47,8 +47,8 @@ This project aims to automate the generation of timetables for educational insti
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/timetable-management-system.git
-   cd timetable-management-system
+   git clone https://github.com/Hani-3/timetable-generator.git
+   cd timetable-generator
    ```
 
 2. Install the required packages:
@@ -97,6 +97,4 @@ Contributions are welcome! Please fork the repository and create a pull request 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-
-Feel free to customize this README template according to your project's specifics or preferences!
 
