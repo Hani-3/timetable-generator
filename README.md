@@ -61,7 +61,7 @@ This project aims to automate the generation of timetables for educational insti
 
 5. Run the application:
    ```bash
-   python app.py
+   python applogin4.py
    ```
 
 6. Access the application in your web browser at `http://127.0.0.1:5000`.
@@ -76,7 +76,7 @@ This project aims to automate the generation of timetables for educational insti
 ```
 /timetable-management-system
 │
-├── app.py                   # Main application file
+├── applogin4.py                   # Main application file
 ├── requirements.txt         # Python dependencies
 ├── /uploads                 # Directory for uploaded files
 └── /templates               # HTML templates for rendering views
