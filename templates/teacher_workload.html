@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Workload</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .time-slot {
+            font-weight: bold;
+        }
+        .actions {
+            position: relative;
+            margin-top: 20px;
+        }
+        .download-btn {
+            position: absolute;
+            right: 0;
+            bottom: -40px; /* Adjust as needed */
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teacher Workload</h1>
+    <table border="1">
+        <tr>
+            <th>Teacher</th>
+            <th>Sessions Assigned</th>
+        </tr>
+        {% for teacher, workload in workload %}
+        <tr>
+            <td>{{ teacher }}</td>
+            <td>{{ workload }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+</head>
+<body>
+    <h2>Enter Course-Wide and Semester-Specific Information to Generate Timetable</h2>
+
+    <!-- Reusable Form -->
+    {% for course in courses %}
+    <h3>{{ course.name }} Course Timetable</h3>
+    <form method="POST" action="/generate-timetable/{{ course.url }}">
+        <!-- Course-wide data -->
+        <h4>Course-Wide Data for {{ course.name }}</h4>
+        <label for="teachers">Teacher Names (comma-separated):</label>
+        <input type="text" name="teachers" required style="width: 500px;"><br><br>
+
+        <label for="recess_start">Recess Start Time (HH:MM):</label>
+        <input type="time" name="recess_start" required><br><br>
+
+        <label for="recess_end">Recess End Time (HH:MM):</label>
+        <input type="time" name="recess_end" required><br><br>
+
+        <label for="start_time">Start Time (HH:MM):</label>
+        <input type="time" name="start_time" required><br><br>
+
+        <label for="end_time">End Time (HH:MM):</label>
+        <input type="time" name="end_time" required><br><br>
+
+        <label for="theory_length">Theory Session Length (in minutes):</label>
+        <input type="number" name="theory_length" required><br><br>
+
+        <label for="practical_length">Practical Session Length (in minutes):</label>
+        <input type="number" name="practical_length" required><br><br>
+
+        <!-- Semester-Specific Data -->
+        {% for semester in course.semesters %}
+        <h4>{{ course.name }} Semester {{ semester.sem_no }}</h4>
+        <label for="theory_subjects_sem{{ semester.sem_no }}">Theory Subjects (comma-separated):</label>
+        <input type="text" name="theory_subjects_sem{{ semester.sem_no }}" required style="width: 500px;"><br><br>
+
+        <label for="practical_subjects_sem{{ semester.sem_no }}">Practical Subjects (comma-separated):</label>
+        <input type="text" name="practical_subjects_sem{{ semester.sem_no }}" required style="width: 500px;"><br><br>
+
+        <!-- Ask Subject-Teacher combination 7 times -->
+        {% for i in range(7) %}
+        <h5>Teacher and Subject Combination {{ i+1 }}:</h5>
+        <label for="teacher_combine_sem{{ semester.sem_no }}_{{ i }}">Subject with Teacher (Teachers) :</label>
+        <input type="text" name="teacher_combine_sem{{ semester.sem_no }}_{{ i }}" style="width: 500px;"><br><br>
+
+        <label for="subject_combine_sem{{ semester.sem_no }}_{{ i }}">Subject with Teacher (Subject) (comma-separated):</label>
+        <input type="text" name="subject_combine_sem{{ semester.sem_no }}_{{ i }}" style="width: 500px;"><br><br>
+
+        
+        {% endfor %}
+
+        {% for i in range(2) %}
+        <h5>Teacher and Practical Subject Combination {{ i+1 }}:</h5>
+        <label for="teacher_practical_combine_sem{{ semester.sem_no }}_{{ i }}">Practical with Teacher (Teacher) :</label>
+        <input type="text" name="teacher_practical_combine_sem{{ semester.sem_no }}_{{ i }}" style="width: 500px;"><br><br>
+
+        <label for="practical_combine_sem{{ semester.sem_no }}">Prractical with Teacher (Practical) (comma-separated):</label>
+        <input type="text" name="practical_combine_sem{{ semester.sem_no }}_{{ i }}" style="width: 500px;"><br><br>
+        {% endfor %}
+  
+        {% endfor %}
+
+        <button type="submit">Generate {{ course.name }} Timetable</button>
+    </form>
+    <hr>
+    {% endfor %}
+</body>
+</html>

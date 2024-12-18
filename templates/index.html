@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+    <h1>Available Courses</h1>
+    <ul>
+        {% for course in course_list %}
+        <li><a href="{{ url_for('course_timetable', course=course) }}">{{ course }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

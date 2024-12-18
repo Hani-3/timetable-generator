@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #444;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        h2 {
+            margin: 30px 0 10px;
+            font-size: 1.5em;
+        }
+        table {
+            width: 90%;
+            margin: 0 auto 30px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+            color: #555;
+        }
+        .time-slot {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .download-btn, .back-btn {
+            display: inline-block;
+            margin: 10px 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover, .back-btn:hover {
+            background-color: #0056b3;
+        }
+        .back-btn {
+            background-color: #6c757d;
+        }
+        .back-btn:hover {
+            background-color: #565e64;
+        }
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+            th, td {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Selected Courses Timetable</h1>
+    {% for course in selected_courses %}
+    <h2>{{ course }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="time-slot">Time Slots</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for time_slot in timetable[course]['time_slots'] %}
+            <tr>
+                <td class="time-slot">{{ time_slot }}</td>
+                <td>{{ timetable[course]['Monday'][loop.index0] if loop.index0 < timetable[course]['Monday']|length else '' }}</td>
+                <td>{{ timetable[course]['Tuesday'][loop.index0] if loop.index0 < timetable[course]['Tuesday']|length else '' }}</td>
+                <td>{{ timetable[course]['Wednesday'][loop.index0] if loop.index0 < timetable[course]['Wednesday']|length else '' }}</td>
+                <td>{{ timetable[course]['Thursday'][loop.index0] if loop.index0 < timetable[course]['Thursday']|length else '' }}</td>
+                <td>{{ timetable[course]['Friday'][loop.index0] if loop.index0 < timetable[course]['Friday']|length else '' }}</td>
+                <td>{{ timetable[course]['Saturday'][loop.index0] if loop.index0 < timetable[course]['Saturday']|length else '' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="actions">
+        <a href="{{ url_for('export_timetable', course=course) }}" class="download-btn">Download as Excel</a>
+        <a href="{{ url_for('index') }}" class="back-btn">Back to Courses</a>
+    </div>
+    {% endfor %}
+</body>
+</html>

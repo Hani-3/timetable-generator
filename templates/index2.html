@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .course-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 200px; /* Adjust width as needed */
+        }
+        .course-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .course-card label {
+            display: block;
+            margin-top: 10px;
+        }
+        .checkbox {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Courses</h1>
+    <div class="course-container">
+        {% for course in course_list %}
+        <div class="course-card">
+            <img src="{{ url_for('static', filename='images/' + course + '.jpg') }}" alt="{{ course }} Image"> <!-- Adjust image path as necessary -->
+            <h2>{{ course }}</h2>
+            <label class="checkbox">
+                <input type="checkbox" name="courses" value="{{ course }}">
+                Select Course
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+    <form action="{{ url_for('course_timetable', course=course) }}">{{ course }} method="POST">
+        <!-- Course cards here -->
+        <button type="submit">Submit Selected Courses</button>
+    </form>
+</body>
+</html>

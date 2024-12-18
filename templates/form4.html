@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+</head>
+<body>
+    <h2>Enter Course-Wide and Semester-Specific Information to Generate Timetable</h2>
+
+    <!-- Reusable Form -->
+    {% for course in courses %}
+    <h3>{{ course.name }} Course Timetable</h3>
+    <form method="POST" action="/generate-timetable/{{ course.url }}">
+        <!-- Course-wide data -->
+        <h4>Course-Wide Data for {{ course.name }}</h4>
+        
+        <label for="recess_start">Recess Start Time (HH:MM):</label>
+        <input type="time" name="recess_start" required><br><br>
+
+        <label for="recess_end">Recess End Time (HH:MM):</label>
+        <input type="time" name="recess_end" required><br><br>
+
+        <label for="start_time">Start Time (HH:MM):</label>
+        <input type="time" name="start_time" required><br><br>
+
+        <label for="end_time">End Time (HH:MM):</label>
+        <input type="time" name="end_time" required><br><br>
+
+        <label for="theory_length">Theory Session Length (in minutes):</label>
+        <input type="number" name="theory_length" required><br><br>
+
+        <label for="practical_length">Practical Session Length (in minutes):</label>
+        <input type="number" name="practical_length" required><br><br>
+
+        
+        <button type="submit">Generate {{ course.name }} Timetable</button>
+    </form>
+    <hr>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .time-slot {
+            font-weight: bold;
+        }
+        .course-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        #download-btn {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #download-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timetable</h1>
+
+    <!-- Download button -->
+    <button id="download-btn">Download Timetable as PDF</button>
+
+    <!-- Timetable content -->
+    {% for course, days in timetable.items() %}
+        <div class="course-header">{{ course }}</div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="time-slot">Time Slots</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for time_slot in days['time_slots'] %}
+                    <tr>
+                        <td class="time-slot">{{ time_slot }}</td>
+                        <td>{{ days['Monday'][loop.index0] if loop.index0 < days['Monday']|length else '' }}</td>
+                        <td>{{ days['Tuesday'][loop.index0] if loop.index0 < days['Tuesday']|length else '' }}</td>
+                        <td>{{ days['Wednesday'][loop.index0] if loop.index0 < days['Wednesday']|length else '' }}</td>
+                        <td>{{ days['Thursday'][loop.index0] if loop.index0 < days['Thursday']|length else '' }}</td>
+                        <td>{{ days['Friday'][loop.index0] if loop.index0 < days['Friday']|length else '' }}</td>
+                        <td>{{ days['Saturday'][loop.index0] if loop.index0 < days['Saturday']|length else '' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Script to generate and download the timetable as a PDF -->
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add timetable content to PDF
+            let content = document.body.innerHTML;
+            doc.text('Timetable', 10, 10); // Example: Add title at the top
+            doc.html(document.body, {
+                callback: function (doc) {
+                    doc.save('timetable.pdf'); // Download the PDF
+                },
+                x: 10,
+                y: 20
+            });
+        });
+    </script>
+</body>
+</html>

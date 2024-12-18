@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course }} Timetable</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+           
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .time-slot {
+            font-weight: bold;
+        }
+        .actions {
+            position: relative;
+            margin-top: 20px;
+        }
+        .download-btn {
+            position: absolute;
+            right: 0;
+            bottom: -40px; /* Adjust as needed */
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ course }} Timetable</h1>
+
+    <div style="position: relative;">
+        <table>
+            <thead>
+                <tr>
+                    <th class="time-slot">Time Slots</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for time_slot in schedule['time_slots'] %}
+                <tr>
+                    <td class="time-slot">{{ time_slot }}</td>
+                    <td>{{ schedule['Monday'][loop.index0] if loop.index0 < schedule['Monday']|length else '' }}</td>
+                    <td>{{ schedule['Tuesday'][loop.index0] if loop.index0 < schedule['Tuesday']|length else '' }}</td>
+                    <td>{{ schedule['Wednesday'][loop.index0] if loop.index0 < schedule['Wednesday']|length else '' }}</td>
+                    <td>{{ schedule['Thursday'][loop.index0] if loop.index0 < schedule['Thursday']|length else '' }}</td>
+                    <td>{{ schedule['Friday'][loop.index0] if loop.index0 < schedule['Friday']|length else '' }}</td>
+                    <td>{{ schedule['Saturday'][loop.index0] if loop.index0 < schedule['Saturday']|length else '' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="actions">
+            <a href="{{ url_for('export_timetable', course=course) }}" class="download-btn">Download as Excel</a>
+            <a href="{{ url_for('index') }}">Back to Courses</a>
+        </div>
+    </div>
+</body>
+</html>
