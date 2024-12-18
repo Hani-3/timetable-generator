@@ -56,23 +56,18 @@ This project aims to automate the generation of timetables for educational insti
    pip install -r requirements.txt
    ```
 
-3. Ensure you have an Excel file with the following sheets:
-   - **Login Details**: Contains columns `Email` and `Password`.
-   - **Courses**: Contains columns `Course Name`, `Semester`, `Theory Subjects`, and `Practical Subjects`.
-   - **Teachers**: Contains columns `Course Name` and `Teacher Name`.
-   - **Credit Points**: Contains columns `Subject` and `Credits`.
-   - **Time Slots**: Contains columns `Course Name`, `Start Time`, `End Time`, `Recess Start`, `Recess End`, `Theory Session Length`, and `Practical Session Length`.
-   - **Subjects with Teachers**: Contains columns for subjects and their respective teachers along with their ratios.
+3. Ensure you have an Excel file:
+   Example excel sheet link : https://github.com/Hani-3/timetable-generator/blob/main/timetable%20excel.xlsx
 
-4. Run the application:
+5. Run the application:
    ```bash
    python app.py
    ```
 
-5. Access the application in your web browser at `http://127.0.0.1:5000`.
+6. Access the application in your web browser at `http://127.0.0.1:5000`.
 
 ## Usage
-1. Navigate to the login page.
+1. Navigate to the login page. 
 2. Enter your credentials to log in.
 3. Upload your Excel file containing course data.
 4. After uploading, the system will generate a timetable which can be accessed from the main page.
@@ -92,9 +87,6 @@ The application includes logging for tracking events and errors during execution
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request for any improvements or features you'd like to add.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
