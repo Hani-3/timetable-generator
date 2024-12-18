@@ -102,5 +102,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Feel free to customize this README template according to your project's specifics or preferences!
 
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/41485998/d54942ec-0831-4e44-a9ef-512d80d418db/paste.txt
