@@ -3,41 +3,39 @@
 This project aims to automate the generation of timetables for educational institutions based on input data from an Excel file. The system considers various factors such as courses, semesters, teachers, credit points, time slots, and subject-teacher assignments to create a conflict-free timetable.
 
 ## Features
-
-1. **Excel-based Input**
+1. **User Authentication**
+   - Secure login using credentials stored in an Excel file.
+     
+2. **Excel-based Input**
    - Reads multiple sheets from an Excel file including Courses, Teachers, Credit Points, Time Slots, and Subjects with Teachers.
 
-2. **Dynamic Timetable Creation**
+3. **Dynamic Timetable Creation**
    - Generates timetables for multiple courses and semesters.
    - Assigns teachers to subjects based on predefined ratios while ensuring teacher availability.
 
-3. **Conflict Resolution**
+4. **Conflict Resolution**
    - Avoids teacher scheduling conflicts using a deterministic teacher-assignment algorithm.
    - Dynamically manages subject-practical durations within available time slots.
 
-4. **Recess and Boundaries**
+5. **Recess and Boundaries**
    - Automatically handles recess periods.
    - Ensures time slots fit within defined daily start and end times.
 
-5. **Credit-based Subject Weighting**
+6. **Credit-based Subject Weighting**
    - Distributes subjects across the timetable proportionally based on credit points.
 
-6. **Teacher Workload Monitoring**
+7. **Teacher Workload Monitoring**
    - Tracks and optimizes teacher workload throughout the week.
 
-7. **Web Interface**
+8. **Web Interface**
    - Provides a user-friendly interface for viewing timetables and exporting them in Excel format.
 
-8. **Logging and Error Handling**
+9. **Logging and Error Handling**
    - Implements logging for tracking application behavior and error handling for robustness.
+     
+10. **Export Functionality**
+   - Allows users to download the generated timetable as an Excel file.
 
-
-## Features
-- **User Authentication**: Secure login using credentials stored in an Excel file.
-- **File Upload**: Users can upload Excel files containing course and scheduling data.
-- **Timetable Generation**: Automatically generates a timetable based on courses, teachers, and time slots.
-- **Teacher Workload Tracking**: Displays the workload of each teacher based on assigned classes.
-- **Export Functionality**: Allows users to download the generated timetable as an Excel file.
 
 ## Requirements
 - Python 3.x
